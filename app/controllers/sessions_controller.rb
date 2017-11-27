@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   include SessionsHelper
 
-  def create
+  def login
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
@@ -14,6 +14,8 @@ class SessionsController < ApplicationController
   end
 
   def register()
+
+
   end
 
   def destroy

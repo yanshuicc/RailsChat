@@ -32,6 +32,6 @@ Rails.application.routes.draw do
   root 'homes#home'
 
   post 'sessions/register' => 'sessions#register'
-  post 'sessions/login' => 'sessions#create'
+  post 'sessions/login' => 'sessions#login'
   delete 'sessions/logout' => 'sessions#destroy'
 end
