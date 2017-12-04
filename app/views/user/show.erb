@@ -1,0 +1,30 @@
+<div class="live_wrap">
+  <div class="u_header">
+    <h1 class="fl">个人中心</h1>
+    <a href="/" class="back fr" >返回首页</a>
+  </div>
+  <div class="u_main">
+    <div class="u_nav">
+      <ul>
+        <li>
+          <%= link_to user_path(current_user, :flag=>1), class: "#{@class_1}" do %>
+              我的信息
+          <% end %>
+        </li>
+        <!--
+        <li>
+          <%= link_to user_path(current_user, :flag=>2), class: "#{@class_2}"  do %>
+              会员充值
+          <% end %>
+        </li>
+        -->
+        <li>
+          <%= link_to user_path(current_user, :flag=>3), class: "#{@class_3}"  do %>
+              我的好友
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="u_mainbody"></div>
+</div>

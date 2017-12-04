@@ -26,16 +26,6 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
 
-  def initialize(name, email, password, sex, phonenumber)
-    self.name=name
-    self.email=email
-    self.role=1
-    self.password_digest = digest(password)
-    self.remember_digest = password
-    self.sex=sex
-    self.phonenumber=phonenumber
-    self.status="离线"
-  end
 
   def self.filter_by_type(type)
     User.where("role = :type", type: type)

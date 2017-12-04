@@ -60,11 +60,10 @@
       <div class="modal-body" style="padding:40px 50px;">
 
         <%= form_for(:session, url: sessions_register_path, method: :post, html: {role: 'form'}) do |f| %>
-
             <%= f.label :email, "账号密码注册" %>
             <div class="form-group">
               <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                 <%= f.text_field :name, class: 'form-control', placeholder: '用户名' %>
               </div>
             </div>
@@ -85,14 +84,14 @@
 
             <div class="form-group">
               <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                <div class="input-group-addon"><span class="fa fa-transgender"></span></div>
                 <%= f.text_field :sex, class: 'form-control', placeholder: '性别' %>
               </div>
             </div>
 
             <div class="form-group">
               <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
                 <%= f.text_field :phonenumber, class: 'form-control', placeholder: '电话' %>
               </div>
             </div>
@@ -101,7 +100,7 @@
               <label><%= f.check_box :remember_me %>记住我</label>
             </div>
 
-            <%= button_tag(type: "submit", class: "btn btn-primary btn-block") do %>
+            <%= button_tag(type: "submit", class: 'btn btn-primary btn-block') do %>
                 <span class="glyphicon glyphicon-off"></span> 注册
             <% end %>
 
