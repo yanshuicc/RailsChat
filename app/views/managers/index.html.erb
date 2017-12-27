@@ -1,0 +1,231 @@
+
+  <%= stylesheet_link_tag 'bootstrap', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'style-responsive', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'zabuto_calendar', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'table', media: 'all', 'data-turbolinks-track' => true %>
+      
+      <!--main content start-->
+         <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+                  <p class="centered"><a href="profile.html"><%= image_tag "ucas.jpg" , :width => '60'%></a></p>
+                  <h5 class="centered">中国科学院大学</h5>
+                    
+                  <li class="mt">
+                        <%= link_to managers_index_path, class: "active" do %>
+                          <i class="fa fa-dashboard"></i>
+                          <span>管理后台</span>
+                        <% end %>
+                  </li>
+
+                  <li class="sub-menu">
+                      <%= link_to managers_index_path do %>
+                          <i class="fa fa-desktop"></i>
+                          <span>信息查询</span>
+                      <% end %>
+                  </li>
+
+                  <li class="sub-menu">
+                      <%= link_to chats_show_managers_path do %>
+                          <i class="fa fa-home"></i>
+                          <span>用户聊天室信息</span>
+                      <% end %>
+                  </li>
+
+                  <li class="sub-menu">
+                      <%= link_to messages_show_managers_path do %>
+                          <i class="fa fa-file-text-o"></i>
+                          <span>聊天信息</span>
+                      <% end %>
+                  </li>
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+        <div>
+ 
+          <section class="wrapper">
+                 
+      <!-- **********************************************************************************************************************************************************
+      RIGHT SIDEBAR CONTENT
+      *********************************************************************************************************************************************************** -->
+                    <div style=" float: left; width: 50%;">
+                    <h3>这里是用于展示具体数据库中的数据的</h3>
+                    <table class="myTest">
+                      <thead>
+                        <tr>
+                          <th>姓名</th>
+                          <th>邮件</th>
+                          <th>用户</th>
+                          <th>性别</th>
+                          <th>电话</th>
+                          <th>在线状态</th>
+                          <th>创建于</th>
+                          <th>更新于</th>
+                          <th colspan="2"></th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <% @users.each do |user| %>
+                          <tr>
+                            <td><%= user.name %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.role %></td>
+                            <td><%= user.sex %></td>
+                            <td><%= user.phonenumber %></td>
+                            <td><%= user.status %></td>
+                            <td><%= user.created_at %></td>
+                            <td><%= user.updated_at %></td>
+
+                            <td><%= link_to 'Edit', index_edit_manager_path(user), method: :post %></td>
+                            <td><%= link_to 'Destroy', manager_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col-lg-3 ds" style="float: right;">
+                   <h3>TEAM MEMBERS</h3>
+                      <!-- First Member -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <%= image_tag "hk.jpeg" , :width => '35', :height => '35'%>
+                        </div>
+                        <div class="details">
+                          <p>贺坤<br/>
+                             <muted>Available</muted>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Second Member -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <%= image_tag "cp.jpeg" , :width => '35', :height => '35'%>
+                        </div>
+                        <div class="details">
+                          <p>陈佩<br/>
+                             <muted>I am Busy</muted>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Third Member -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <img class="img-circle" src="assets/img/ui-danro.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                          <p><a href="#">DAN ROGERS</a><br/>
+                             <muted>Available</muted>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Fourth Member -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <img class="img-circle" src="assets/img/ui-zac.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                          <p><a href="#">Zac Sniders</a><br/>
+                             <muted>Available</muted>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Fifth Member -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <img class="img-circle" src="assets/img/ui-sam.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                          <p><a href="#">Marcel Newman</a><br/>
+                             <muted>Available</muted>
+                          </p>
+                        </div>
+                      </div>
+
+                        <!-- CALENDAR-->
+                        <div id="calendar" class="mb">
+                            <div class="panel green-panel no-margin">
+                                <div class="panel-body">
+                                    <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
+                                        <div class="arrow"></div>
+                                        <h3 class="popover-title" style="disadding: none;"></h3>
+                                        <div id="date-popover-content" class="popover-content"></div>
+                                    </div>
+                                    <div id="my-calendar"></div>
+                                </div>
+                            </div>
+                        </div><!-- / calendar -->
+                      
+                  </div><!-- /col-lg-3 -->
+              </div><! --/row -->
+          </section>
+          </div>
+      </section>
+
+      <!--main content end-->
+  </section>
+  
+
+
+<%= javascript_include_tag 'jquery', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.dcjqaccordion.2.7', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.scrollTo.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'common-scripts', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
+
+  
+  <script type="application/javascript">
+        $(document).ready(function () {
+            $("#date-popover").popover({html: true, trigger: "manual"});
+            $("#date-popover").hide();
+            $("#date-popover").click(function (e) {
+                $(this).hide();
+            });
+        
+            $("#my-calendar").zabuto_calendar({
+                action: function () {
+                    return myDateFunction(this.id, false);
+                },
+                action_nav: function () {
+                    return myNavFunction(this.id);
+                },
+                ajax: {
+                    url: "show_data.php?action=1",
+                    modal: true
+                },
+                legend: [
+                    {type: "text", label: "Special event", badge: "00"},
+                    {type: "block", label: "Regular event", }
+                ]
+            });
+        });
+        
+        
+        function myNavFunction(id) {
+            $("#date-popover").hide();
+            var nav = $("#" + id).data("navigation");
+            var to = $("#" + id).data("to");
+            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+        }
+    </script>

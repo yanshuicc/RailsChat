@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include SessionsHelper
+  respond_to :html, :json
   before_action :set_user, except: [:index, :new, :index_json]
   before_action :logged_in, only: [:show]
   before_action :correct_user, only: :show
@@ -15,12 +16,26 @@ class UsersController < ApplicationController
       @user.create_performance
       redirect_to users_path, flash: {success: "添加成功"}
     else
-      flash[:warning] = "账号信息填写有误,请重试"
+      flash[:warning] = '账号信息填写有误,请重试'
       render 'new'
     end
   end
 
   def show
+    user = User.find(params[:id])
+    @class_1 = @class_2 = @class_3 = ''
+    case params[:flag]
+      when '1'
+        @class_1 = 'current'
+      when '2'
+        @class_2 = 'current'
+      when '3'
+        @class_3 = 'current'
+      else
+        @class_1 = 'current'
+    end
+
+    render 'user/show'
   end
 
   def edit

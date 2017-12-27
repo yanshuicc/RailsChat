@@ -1,10 +1,25 @@
 Rails.application.routes.draw do
+  get 'managers/index'
+
+  get 'manager/index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :friendships
   resources :users do
     collection do
       get :index_json
+    end
+  end
+  resources :managers do
+    member do
+      delete :destroy
+      post :index_edit
+      patch :index_update
+    end
+    collection do
+      get :chats_show
+      get :messages_show
     end
   end
   resources :salaries
@@ -32,6 +47,6 @@ Rails.application.routes.draw do
   root 'homes#home'
 
   post 'sessions/register' => 'sessions#register'
-  post 'sessions/login' => 'sessions#create'
+  post 'sessions/login' => 'sessions#login'
   delete 'sessions/logout' => 'sessions#destroy'
 end

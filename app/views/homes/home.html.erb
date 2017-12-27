@@ -1,3 +1,7 @@
+
+<% unless current_user %>
+<%= render 'layouts/login_panel' %>
+<% end %>
 <div class="container-fluid">
   <header class="jumbotron hero-spacer">
     <h1>A Warm Welcome to Rails Chat!</h1>

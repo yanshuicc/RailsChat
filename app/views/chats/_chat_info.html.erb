@@ -1,3 +1,4 @@
+<!-- 右边panel -->
 <div class="panel panel-default">
   <div class="panel-heading">
     <i class="fa fa-comments fa-fw"></i> 房间信息
@@ -28,13 +29,12 @@
     </table>
     <hr>
     <% if current_user.id==@chat.admin_id %>
-
         <button data-toggle="collapse" data-target="#add-user" class="btn btn-info btn-block" style="margin-bottom: 5px;">添加用户</button>
         <div id="add-user" class="collapse">
           <div class="well">
             <%= form_for @chat, url: add_user_chat_path(@chat), method: :post, role: 'form' do |f| %>
                 <label for="users">选择加入聊天的用户：</label>
-                <%= select_tag :users, options_for_select(@friends_out_chat.map { |user| [user.name, user.id] }), class: "js-example-basic-multiple", multiple: "multiple", multiple: true, style: "width: 100%" %>
+                <%= select_tag :users, options_for_select(@friends_out_chat.map { |user| [user.name, user.id] }), class: "js-example-basic-multiple", multiple: true, style: "width: 100%" %>
                 <%= f.submit '确定', class: 'btn btn-success btn-block', style: 'margin-top:10px;margin-bottom:10px ' %>
             <% end %>
             <button data-toggle="collapse" data-target="#add-user" class="btn btn-default btn-block"> 取消</button>
@@ -71,8 +71,6 @@
 </div>
 
 <script type="text/javascript">
-
     $(".js-example-basic-multiple").select2();
     $(".js-example-basic-single").select2();
-
 </script>

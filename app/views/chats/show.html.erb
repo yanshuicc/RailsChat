@@ -1,3 +1,4 @@
+<!-- 有聊天窗口时候的聊天界面的分列 -->
 <div class="row">
   <div class="col-sm-2">
     <%= render 'chats/navside' %>
@@ -37,16 +38,15 @@
         </div>
       </div>
 
+      <!--聊天框主体-->
       <div class="panel-body">
         <!--Widget body-->
         <div id="demo-chat-body" class="collapse in">
           <div class="nano has-scrollbar" style="height:375px">
             <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
               <ul class="list-unstyled media-block">
-
                 <%= sync partial: 'message_row', collection: Message.by_chat(@chat), refetch: true %>
                 <%= sync_new partial: 'message_row', resource: Message.new, scope: @chat, refetch: true %>
-
               </ul>
             </div>
             <div class="nano-pane">
@@ -57,12 +57,15 @@
       </div>
 
       <div class="panel-footer">
-        <%= form_for @new_message, remote: true do |f| %>
-            <div class="input-group">
-              <%= f.text_field :body, class: "form-control input-sm", placeholder: "Type your message here..." %>
-              <span class="input-group-btn"> <%= f.submit "发送", class: "btn btn-warning btn-sm" %> </span>
-              <%= hidden_field_tag :chat_room, @chat.id %>
-            </div>
+        <%= form_for @new_message, remote: false do |f| %>
+          <div class="input-group">
+            <%= f.text_field :body, class: "form-control input-sm",
+                               placeholder: "Type your message here..." %>
+            <span class="input-group-btn">
+                <%= f.submit "发送", class: "btn btn-warning btn-sm" %>
+            </span>
+            <%= hidden_field_tag :chat_room, @chat.id %>
+          </div>
         <% end %>
       </div>
     </div>
