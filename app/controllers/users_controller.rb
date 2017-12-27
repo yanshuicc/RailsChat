@@ -22,7 +22,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
+    if params[:friend_id]==nil
+      @friends = current_user.friends
+    else if current_user.friends.ids.include?(params[:friend_id].to_i)
+           @user = User.find(params[:friend_id])
+         end
+    end
+
     @class_1 = @class_2 = @class_3 = ''
     case params[:flag]
       when '1'
@@ -34,7 +40,6 @@ class UsersController < ApplicationController
       else
         @class_1 = 'current'
     end
-
     render 'user/show'
   end
 

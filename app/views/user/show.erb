@@ -11,20 +11,41 @@
               我的信息
           <% end %>
         </li>
-        <!--
         <li>
           <%= link_to user_path(current_user, :flag=>2), class: "#{@class_2}"  do %>
+              我的好友
+          <% end %>
+        </li>
+        <!--
+        <li>
+          <%= link_to user_path(current_user, :flag=>3), class: "#{@class_3}"  do %>
               会员充值
           <% end %>
         </li>
         -->
-        <li>
-          <%= link_to user_path(current_user, :flag=>3), class: "#{@class_3}"  do %>
-              我的好友
-          <% end %>
-        </li>
       </ul>
     </div>
   </div>
-  <div class="u_mainbody"></div>
+  <div class="u_mainbody">
+    <% if params[:flag] == '1' or params[:flag] == nil %>
+        <img src="/assets/学习使我快乐.jpg" height="150" width="150">
+        姓名：<%= current_user.name %><p>
+        电话：<%= current_user.phonenumber %><p>
+        email: <%= current_user.email %><p>
+        性别：<%= current_user.sex %><p>
+    <% else params[:flag] == '2'%>
+        <% if params[:friend_id] == nil %>
+            <% @friends.each do |user| %>
+                <a href=<%= "/users/#{@current_user.id}?friend_id=#{user.id}&flag=2" %>><%= user.name %></a><p>
+            <% end %>
+        <% else %>
+            <img src="/assets/dalao带带本垃圾吧.jpg" height="150" width="150">
+            姓名：<%= @user.name %><p>
+            电话：<%= @user.phonenumber %><p>
+            email: <%= @user.email %><p>
+            性别：<%= @user.sex %><p>
+        <% end %>
+    <% end %>
+
+  </div>
 </div>
