@@ -1,6 +1,7 @@
 class ManagersController < ApplicationController
-
+  include SessionsHelper
   before_action :set_user, only: [ :index_edit, :index_update, :destroy]
+  before_action :correct_user
 
   def index
   	@users=User.all
@@ -75,6 +76,17 @@ class ManagersController < ApplicationController
         inner join chats
         on chats.id = A.chat_id
       "])
+  end
+
+  def correct_user
+    if current_user
+      if current_user.role == 1
+      else
+        redirect_to root_path, flash: {warning: '您权限不够'}
+      end
+    else
+      redirect_to root_path, flash: {warning: '您权限不够'}
+    end
   end
 
   private

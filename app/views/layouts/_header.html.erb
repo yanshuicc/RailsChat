@@ -13,8 +13,8 @@
 
           <% if current_user.role == 1%>
             <li>
-              <%= link_to sessions_logout_path, method: :delete, class: "dropbtn" do %>
-                  loggout <span class=" glyphicon glyphicon-cog"></span>
+              <%= link_to managers_index_path, class: "dropbtn" do %>
+                  manager <span class=" glyphicon glyphicon-cog"></span>
               <% end %>
             </li>
           <% end %>
@@ -35,11 +35,7 @@
             <%= link_to sessions_logout_path, method: :delete, class: "dropbtn" do %>
                 loggout <span class="	glyphicon glyphicon-off"></span>
             <% end %>
-          </li>
-
-
-
-          
+          </li>   
 
       <% end %>
     </ul>

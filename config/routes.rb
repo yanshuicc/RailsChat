@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     member do
       delete :destroy
       post :index_edit
+      get :index_edit
       patch :index_update
     end
     collection do

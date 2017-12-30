@@ -1,10 +1,11 @@
 
+
   <%= stylesheet_link_tag 'bootstrap', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag 'style-responsive', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag 'zabuto_calendar', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag 'table', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag 'grey_form', media: 'all', 'data-turbolinks-track' => true %> 
+  <%= stylesheet_link_tag 'style' %>
+  <%= stylesheet_link_tag 'style-responsive'%>
+  <%= stylesheet_link_tag 'zabuto_calendar' %>
+  <%= stylesheet_link_tag 'table' %>
+  <%= stylesheet_link_tag 'grey_form' %> 
       <!--main content start-->
          <section id="container" >
       <!-- **********************************************************************************************************************************************************
@@ -68,10 +69,10 @@
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->
                     <div class="basic-grey" style=" float: left; width: 50%;">
-                    <h3>这里是用于展示具体数据库中的数据的</h3>
-                    <%= render 'form_index', user: @user %>
+                    <h3>请您修改以下信息</h3>
 
-					           <%= link_to 'Back', managers_index_path %>
+                      <%= render 'form_index', user: @user %>
+					            <%= link_to 'Back', managers_index_path %>
 
                     </div>
                   <div class="col-lg-3 ds" style="float: right;">
@@ -79,55 +80,33 @@
                       <!-- First Member -->
                       <div class="desc">
                         <div class="thumb">
-                          <img class="img-circle" src="assets/img/ui-divya.jpg" width="35px" height="35px" align="">
+                          <%= image_tag "hk.jpeg" , :width => '35', :height => '35'%>
                         </div>
                         <div class="details">
-                          <p><a href="#">DIVYA MANIAN</a><br/>
-                             <muted>Available</muted>
+                          <p>贺坤<br/>
+                             <muted>来自网络空间安全学院，爱好篮球、美剧</muted>
                           </p>
                         </div>
                       </div>
                       <!-- Second Member -->
                       <div class="desc">
                         <div class="thumb">
-                          <img class="img-circle" src="assets/img/ui-sherman.jpg" width="35px" height="35px" align="">
+                          <%= image_tag "cp.jpeg" , :width => '35', :height => '35'%>
                         </div>
                         <div class="details">
-                          <p><a href="#">DJ SHERMAN</a><br/>
-                             <muted>I am Busy</muted>
+                          <p>陈佩<br/>
+                             <muted>来自网络空间安全学院，几经大神，默默就把代码写完了</muted>
                           </p>
                         </div>
                       </div>
                       <!-- Third Member -->
                       <div class="desc">
                         <div class="thumb">
-                          <img class="img-circle" src="assets/img/ui-danro.jpg" width="35px" height="35px" align="">
+                          <%= image_tag "mjb.jpeg" , :width => '35', :height => '35'%>
                         </div>
                         <div class="details">
-                          <p><a href="#">DAN ROGERS</a><br/>
-                             <muted>Available</muted>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Fourth Member -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <img class="img-circle" src="assets/img/ui-zac.jpg" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                          <p><a href="#">Zac Sniders</a><br/>
-                             <muted>Available</muted>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Fifth Member -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <img class="img-circle" src="assets/img/ui-sam.jpg" width="35px" height="35px" align="">
-                        </div>
-                        <div class="details">
-                          <p><a href="#">Marcel Newman</a><br/>
-                             <muted>Available</muted>
+                          <p>苗敬博<br/>
+                             <muted>网络空间安全学院博士，外号小猪佩奇</muted>
                           </p>
                         </div>
                       </div>
