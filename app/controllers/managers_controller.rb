@@ -1,6 +1,5 @@
 class ManagersController < ApplicationController
 
-  before_action :set_user, only: [ :index_edit, :index_update, :destroy]
 
   def index
   	@users=User.all
@@ -9,7 +8,7 @@ class ManagersController < ApplicationController
   def destroy
   	user = User.find(params[:id])
     user.destroy
-    redirect_to :action => 'index' 
+    redirect_to :action => 'index'
   end
 
   def index_edit
@@ -78,9 +77,6 @@ class ManagersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
 
      def user_params
       params.require(:user).permit(:name, :email, :role, :sex, :phonenumber, :status)

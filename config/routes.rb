@@ -22,14 +22,6 @@ Rails.application.routes.draw do
       get :messages_show
     end
   end
-  resources :salaries
-  resources :performances
-  resources :announcements
-  resources :materials
-  resources :articles
-  resources :departments
-  resources :companynews
-  resources :vacation
   resources :messages do
     collection do
       delete :destroyall
@@ -43,6 +35,7 @@ Rails.application.routes.draw do
     end
   end
   resources :friendships
+  resources :messagesreadflag
 
   root 'homes#home'
 

@@ -4,5 +4,4 @@ class Messages_read_flag < ActiveRecord::Base
 
 
   sync :all
-  sync_scope :by_user, ->(user) { where(user_id: user.id) }
 end

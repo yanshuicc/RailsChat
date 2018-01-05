@@ -70,6 +70,8 @@ class ChatsController < ApplicationController
     @users_in_chat= @chat.users-[current_user]
     @friends=current_user.friends+current_user.inverse_friends
     @friends_out_chat=@friends-@chat.users
+    message_flags = Messages_read_flag.joins(:message).where(user_id:current_user.id, flag:0,messages: {chat_id: params[:id]})
+    message_flags.update(flag: 1)
   end
 
   private

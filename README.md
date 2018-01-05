@@ -14,7 +14,7 @@ Rails 5.1.4
 	gem uninstall bcrypt
 	gem uninsall bcrypt-ruby
 	gem install bcrypt --platform=ruby
-
+    gem install eventmachine --platform ruby
 	
 
 生成public下的静态资源,需要修正字体的资源文件夹asset为fonts

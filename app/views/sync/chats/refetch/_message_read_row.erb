@@ -1,1 +1,5 @@
-<span class="unread"><%= messages_read_flag_count %></span>
+<% res = messages_read_flag_count(chat.id) %>
+<% if res != 0 %>
+    <span class="unread"><%= res %>
+    </span>
+<% end %>

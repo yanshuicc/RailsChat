@@ -8,6 +8,14 @@ class MessagesController < ApplicationController
     redirect_to chats_path, flash: {:warning => '此聊天不存在'} and return if chat.nil?
     @message.chat=chat
     if @message.save
+      for u in chat.users
+        @messages_read_flag = Messages_read_flag.new
+        @messages_read_flag.message = @message
+        @messages_read_flag.user=u
+        @messages_read_flag.flag=0
+        @messages_read_flag.save
+        sync_update chat
+      end
       sync_new @message, scope: chat
     else
       redirect_to chat_path(chat), flash: {:warning => '消息发送失败'} and return

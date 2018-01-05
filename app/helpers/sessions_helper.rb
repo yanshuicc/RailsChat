@@ -27,6 +27,11 @@ module SessionsHelper
     end
   end
 
+  def messages_read_flag_count(chatId)
+    @messages_read_flag_count=Messages_read_flag.joins(:message).where(user_id:current_user.id, flag:0,messages: {chat_id: chatId}).count
+    @messages_read_flag_count
+  end
+
   def remember_user(user)
     user.user_remember
     # Because it places the id as plain text, this method exposes the form of the application’s cookies

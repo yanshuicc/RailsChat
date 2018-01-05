@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   has_many :messages
   has_and_belongs_to_many :chats
 
@@ -7,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+
+  has_many :messagesreadflags
 
   before_save :downcase_email
   attr_accessor :remember_token

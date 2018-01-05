@@ -7,6 +7,7 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.paths << Emoji.images_path
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
+Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
@@ -22,6 +23,7 @@ Rails.application.config.assets.precompile += %w( grey_form.css )
 Rails.application.config.assets.precompile += %w( jquery.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( jquery.dcjqaccordion.2.7.js )
+Rails.application.config.assets.precompile += %w( jquery.nicescroll.min.js )
 Rails.application.config.assets.precompile += %w( jquery.scrollTo.min.js )
 Rails.application.config.assets.precompile += %w( common-scripts.js )
 Rails.application.config.assets.precompile += %w( zabuto_calendar.js )
