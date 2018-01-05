@@ -1,10 +1,9 @@
 
-  <%= stylesheet_link_tag 'bootstrap', media: 'all', 'data-turbolinks-track' => false %>
-  <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track' => false %>
-  <%= stylesheet_link_tag 'style-responsive', media: 'all', 'data-turbolinks-track' => false %>
-  <%= stylesheet_link_tag 'zabuto_calendar', media: 'all', 'data-turbolinks-track' => false %>
-  <%= stylesheet_link_tag 'table', media: 'all', 'data-turbolinks-track' => false %>
-      
+  <%= stylesheet_link_tag 'bootstrap', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'style' %>
+  <%= stylesheet_link_tag 'style-responsive'%>
+  <%= stylesheet_link_tag 'zabuto_calendar' %>
+  <%= stylesheet_link_tag 'table' %>   
       <!--main content start-->
          <section id="container" >
       <!-- **********************************************************************************************************************************************************
@@ -68,8 +67,8 @@
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->
                     <div style=" float: left; width: 50%;">
-                    <h3>这里是用于展示具体数据库中的数据的</h3>
-                    <table class="myTest">
+                    <h3>欢迎来到用户信息管理中心</h3>
+                    <table class="imagetable">
                       <thead>
                         <tr>
                           <th>姓名</th>
@@ -112,7 +111,7 @@
                         </div>
                         <div class="details">
                           <p>贺坤<br/>
-                             <muted>Available</muted>
+                             <muted>来自网络空间安全学院，爱好篮球、美剧</muted>
                           </p>
                         </div>
                       </div>
@@ -123,22 +122,22 @@
                         </div>
                         <div class="details">
                           <p>陈佩<br/>
-                             <muted>I am Busy</muted>
+                             <muted>来自网络空间安全学院，几经大神，默默就把代码写完了</muted>
                           </p>
                         </div>
                       </div>
-                      <!-- Third Member
+                      <!-- Third Member -->
                       <div class="desc">
                         <div class="thumb">
-                          <img class="img-circle" src="assets/img/ui-danro.jpg" width="35px" height="35px" align="">
+                          <%= image_tag "mjb.jpeg" , :width => '35', :height => '35'%>
                         </div>
                         <div class="details">
-                          <p><a href="#">DAN ROGERS</a><br/>
-                             <muted>Available</muted>
+                          <p>苗敬博<br/>
+                             <muted>网络空间安全学院博士，外号小猪佩奇</muted>
                           </p>
                         </div>
-                      </div>-->
-
+                      </div>
+                      
 
                         <!-- CALENDAR-->
                         <div id="calendar" class="mb">
@@ -155,6 +154,7 @@
                         </div><!-- / calendar -->
                       
                   </div><!-- /col-lg-3 -->
+              </div><! --/row -->
           </section>
           </div>
       </section>
@@ -164,7 +164,12 @@
   
 
 
-
+<%= javascript_include_tag 'jquery', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.dcjqaccordion.2.7', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.scrollTo.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'common-scripts', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   
 
   
@@ -176,22 +181,19 @@
                 $(this).hide();
             });
         
-            //$("#my-calendar").zabuto_calendar({
-            //    action: function () {
-            //        return myDateFunction(this.id, false);
-            //    },
-            //    action_nav: function () {
-            //        return myNavFunction(this.id);
-            //    },
-            //    ajax: {
-            //        url: "show_data.php?action=1",
-            //        modal: true
-            //    },
-            //    legend: [
-            //        {type: "text", label: "Special event", badge: "00"},
-            //        {type: "block", label: "Regular event", }
-            //    ]
-            //});
+            $("#my-calendar").zabuto_calendar({
+                action_nav: function () {
+                    return myNavFunction(this.id);
+                },
+                ajax: {
+                    url: "show_data.php?action=1",
+                    modal: true
+                },
+                legend: [
+                    {type: "text", label: "Special event", badge: "00"},
+                    {type: "block", label: "Regular event", }
+                ]
+            });
         });
         
         
