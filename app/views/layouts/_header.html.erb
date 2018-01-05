@@ -11,6 +11,14 @@
 
       <% if current_user %>
 
+          <% if current_user.role == 1%>
+            <li>
+              <%= link_to sessions_logout_path, method: :delete, class: "dropbtn" do %>
+                  loggout <span class=" glyphicon glyphicon-cog"></span>
+              <% end %>
+            </li>
+          <% end %>
+
           <li>
             <%= link_to chats_path, class: "dropbtn" do %>
                 ChatRoom  <i class="fa fa-wechat"></i>
@@ -28,6 +36,10 @@
                 loggout <span class="	glyphicon glyphicon-off"></span>
             <% end %>
           </li>
+
+
+
+          
 
       <% end %>
     </ul>

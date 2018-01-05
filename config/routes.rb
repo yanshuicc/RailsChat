@@ -1,10 +1,25 @@
 Rails.application.routes.draw do
+  get 'managers/index'
+
+  get 'manager/index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :friendships
   resources :users do
     collection do
       get :index_json
+    end
+  end
+  resources :managers do
+    member do
+      delete :destroy
+      post :index_edit
+      patch :index_update
+    end
+    collection do
+      get :chats_show
+      get :messages_show
     end
   end
   resources :salaries
