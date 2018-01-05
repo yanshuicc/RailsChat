@@ -154,7 +154,7 @@
                         </div><!-- / calendar -->
                       
                   </div><!-- /col-lg-3 -->
-              </div><! --/row -->
+
           </section>
           </div>
       </section>
@@ -184,10 +184,6 @@
             $("#my-calendar").zabuto_calendar({
                 action_nav: function () {
                     return myNavFunction(this.id);
-                },
-                ajax: {
-                    url: "show_data.php?action=1",
-                    modal: true
                 },
                 legend: [
                     {type: "text", label: "Special event", badge: "00"},
