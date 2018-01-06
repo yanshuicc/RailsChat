@@ -27,6 +27,7 @@ Rails 5.1.4
 	
 	
 博主blog
+
 http://blog.csdn.net/ppp8300885/article/details/59109778
 
 https://github.com/chrismccord/render_sync

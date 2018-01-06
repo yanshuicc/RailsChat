@@ -1,0 +1,52 @@
+<!-- Modal -->
+
+<div class="modal fade" id="request_modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding:35px 50px;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h10><span class="glyphicon glyphicon-lock"></span>好友请求 </h10>
+      </div>
+        <table class="table table-striped table-hover" id="request_result">
+          <thead>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  (function () {
+    window.setInterval(fri_req, 2000);
+
+    function fri_req()
+    {
+      $.ajax({
+        url:"/friendships/index_json",
+        success: function(data) {
+          $('#request_result tr').remove();
+          if(data.length==0){}
+          else{
+            name = data[0]['name'];
+            id = data[0]['id'];
+            $('#request_result thead').html("<tr><th>"+name+"向您发送了添加好友请求"+
+                "<a class='btn btn-success btn-xs' style='float:right' data-method='post' href='/friendships/agree?agree=0&request_id="
+                +id.toString()+
+                "'>忽略</a>" +"<a class='btn btn-success btn-xs' style='float:right' data-method='post' href='/friendships/agree?agree=1&request_id="
+                +id.toString()+
+                "'>添加</a></th></tr>");
+            $("#request_modal").modal();
+          }
+        },
+        async:true
+      })
+    }
+
+  }.call(this))
+</script>
+
