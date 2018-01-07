@@ -50,5 +50,5 @@ Rails.application.routes.draw do
   get 'managers/index'
   post 'sessions/register' => 'sessions#register'
   post 'sessions/login' => 'sessions#login'
-  get 'sessions/logout' => 'sessions#destroy'
+  delete 'sessions/logout' => 'sessions#destroy'
 end

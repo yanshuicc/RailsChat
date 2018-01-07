@@ -48,7 +48,7 @@
                   <% @friends.each do |user| %>
                       <tr style=" margin: 15px;">
                         <td style="border-collapse: collapse;border: 1px solid #aaa; padding: 6px 15px 6px 6px; ">
-                          <a href=<%= "/users/#{@current_user.id}?friend_id=#{user.id}&flag=2" %> ><%= user.name %></a>
+                          <a class="u_a" href=<%= "/users/#{@current_user.id}?friend_id=#{user.id}&flag=2" %> ><%= user.name %></a>
                         </td>
                       </tr>
                   <% end %>
