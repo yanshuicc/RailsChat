@@ -7,6 +7,10 @@ class ManagersController < ApplicationController
   	@users=User.all
   end
 
+  def show
+    redirect_to :action => 'index'
+  end
+
   def destroy
   	user = User.find(params[:id])
     user.destroy

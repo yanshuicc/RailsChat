@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get :index_json
     end
   end
+
   resources :managers do
     member do
       delete :destroy
@@ -15,15 +16,18 @@ Rails.application.routes.draw do
       patch :index_update
     end
     collection do
+      get :index
       get :chats_show
       get :messages_show
     end
   end
+
   resources :messages do
     collection do
       delete :destroyall
     end
   end
+
   resources :chats do
     member do
       patch :trans_auth
@@ -31,6 +35,7 @@ Rails.application.routes.draw do
       delete :delete_user
     end
   end
+
   resources :friendships do
     collection do
       get :agree
@@ -43,7 +48,6 @@ Rails.application.routes.draw do
   root 'homes#home'
 
   get 'managers/index'
-  get 'manager/index'
   post 'sessions/register' => 'sessions#register'
   post 'sessions/login' => 'sessions#login'
   get 'sessions/logout' => 'sessions#destroy'

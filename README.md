@@ -24,6 +24,8 @@ Rails 5.1.4
 本地运行
 
 	bundle exec rackup sync.ru -E production --host localhost
+
+	bundle exec rackup sync.ru -E production --host 138.128.206.124
 	
 	
 博主blog
