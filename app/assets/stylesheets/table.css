@@ -6,7 +6,7 @@ table.imagetable{
     border-color: #999999;
     border-collapse: collapse;
     text-align: center;
-    width: 1000px;
+    width: 900px;
 }
 table.imagetable th{
     background: #b5cfd2;

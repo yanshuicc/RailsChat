@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :messages do
     collection do
-      delete :destroyall
+      get :destroyall
     end
   end
 
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
   resources :friendships do
     collection do
-      get :agree
+      post :agree
       get :index_json
     end
   end

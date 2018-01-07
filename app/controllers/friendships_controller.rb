@@ -27,7 +27,7 @@ class FriendshipsController < ApplicationController
   end
 
   def agree
-    if(params[:agree]==0)
+    if params[:agree]=='0'
       FriendshipRequest.refuseReq(params[:request_id])
       flash[:error] = '已经拒绝该请求添加好友'
     else

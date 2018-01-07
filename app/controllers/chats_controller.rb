@@ -3,7 +3,7 @@ class ChatsController < ApplicationController
   include ChatsHelper
   respond_to :js, :html
   before_action :logged_in
-  before_action :set_chat, except: [:index, :new, :create]
+  before_action :set_chat, except: [:index, :create]
   before_action :correct_user, only: :show
 
   def index

@@ -23,8 +23,8 @@ class UsersController < ApplicationController
 
   def show
     if params[:friend_id]==nil
-      @friends = current_user.friends
-    else if current_user.friends.ids.include?(params[:friend_id].to_i)
+      @friends = current_user.friends+current_user.inverse_friends
+    else if current_user.friends.ids.include?(params[:friend_id].to_i) or current_user.inverse_friends.ids.include?(params[:friend_id].to_i)
            @user = User.find(params[:friend_id])
          end
     end
