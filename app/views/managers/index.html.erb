@@ -19,8 +19,9 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-                  <p class="centered"><a href="profile.html"><%= image_tag "ucas.jpg" , :width => '60'%></a></p>
-                  <h5 class="centered">中国科学院大学</h5>
+                  <p class="centered"><a href= <%= managers_index_path %>>
+                  <%= image_tag "manager_header.jpeg" , :width => '60'%></a></p>
+                  <h5 class="centered">数据管理中心</h5>
                     
                   <li class="mt">
                         <%= link_to managers_index_path, class: "active" do %>
@@ -103,55 +104,25 @@
                     </table>
                   </div>
                   <div class="col-lg-3 ds" style="float: right;">
-                   <h3>TEAM MEMBERS</h3>
-                      <!-- First Member -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <%= image_tag "hk.jpeg" , :width => '35', :height => '35'%>
-                        </div>
-                        <div class="details">
-                          <p>贺坤<br/>
-                             <muted>来自网络空间安全学院，爱好篮球、美剧</muted>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Second Member -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <%= image_tag "cp.jpeg" , :width => '35', :height => '35'%>
-                        </div>
-                        <div class="details">
-                          <p>陈佩<br/>
-                             <muted>来自网络空间安全学院，几经大神，默默就把代码写完了</muted>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Third Member -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <%= image_tag "mjb.jpeg" , :width => '35', :height => '35'%>
-                        </div>
-                        <div class="details">
-                          <p>苗敬博<br/>
-                             <muted>网络空间安全学院博士，外号小猪佩奇</muted>
-                          </p>
-                        </div>
-                      </div>
-                      
 
-                        <!-- CALENDAR-->
-                        <div id="calendar" class="mb">
-                            <div class="panel green-panel no-margin">
-                                <div class="panel-body">
-                                    <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
-                                        <div class="arrow"></div>
-                                        <h3 class="popover-title" style="disadding: none;"></h3>
-                                        <div id="date-popover-content" class="popover-content"></div>
-                                    </div>
-                                    <div id="my-calendar"></div>
-                                </div>
+                    <div class="basic-grey">
+                      <fieldset>
+                        <legend>请输入待查寻用户信息</legend>
+                          
+                          <%= form_tag(  action: "index" )do %>
+                            
+                            <div class="field">
+                              <%= label_tag(:user_name, "用户姓名") %>
+                              <%= text_field_tag(:user_name) %>
                             </div>
-                        </div><!-- / calendar -->
+                            <div class="field">
+                              <%= label_tag(:user_type, "用户类别") %>
+                              <%= text_field_tag(:user_type) %>
+                            </div>
+                            <%= submit_tag("查询") %>
+                          <% end %>
+                      </fieldset>
+                    </div>
                       
                   </div><!-- /col-lg-3 -->
 

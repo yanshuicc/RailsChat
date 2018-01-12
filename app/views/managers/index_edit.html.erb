@@ -21,8 +21,9 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-                  <p class="centered"><a href="profile.html"><%= image_tag "ucas.jpg" , :width => '60'%></a></p>
-                  <h5 class="centered">中国科学院大学</h5>
+                  <p class="centered"><a href= <%= managers_index_path %>>
+                  <%= image_tag "manager_header.jpeg" , :width => '60'%></a></p>
+                  <h5 class="centered">数据管理中心</h5>
                     
                   <li class="mt">
                         <%= link_to managers_index_path, class: "active" do %>

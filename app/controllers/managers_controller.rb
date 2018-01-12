@@ -1,10 +1,26 @@
 class ManagersController < ApplicationController
   include SessionsHelper
-  before_action :set_user, only: [ :index_edit, :index_update, :destroy]
+
   before_action :correct_user
 
   def index
   	@users=User.all
+
+    if params[:user_name].nil? or params[:user_name] == ''
+    else 
+      
+      @users = @users.where("name like ?", "%#{params[:user_name]}%")
+    end
+    
+    if params[:user_type].nil? or params[:user_type] == ''
+    else 
+
+      if(params[:user_type] == '1')
+        @users = @users.where("role = ?", '1')
+      else
+        flash[:info] = '请检查您的输入是否由误！'
+      end
+    end
   end
 
   def show
@@ -12,8 +28,40 @@ class ManagersController < ApplicationController
   end
 
   def destroy
-  	user = User.find(params[:id])
-    user.destroy
+  	@user = User.find(params[:id])
+
+    @messages_read_flag = Messages_read_flag.where("user_id = ?", params[:id])
+    @messages_read_flag.each do |flag|
+      @messages_flag = Messages_read_flag.where("message_id = ?", flag.message_id)
+      @messages_flag.each do |flag_all|
+        flag_all.destroy
+      end
+    end
+    
+    @messages = Message.where("user_id = ?", params[:id])
+    @messages.each do |message|
+      message.destroy
+    end
+
+    @chat_users = Chats_user.where("user_id = ?", params[:id])
+    @chat_users.each do |chat_user|
+      chat_user.destroy
+    end
+
+    @chats = Chat.where("admin_id = ?", params[:id])
+    @chats.each do |chat|
+      chat.destroy
+    end
+    @friendships = FriendshipRequest.where("send_user_id = ?", params[:id])
+    @friendships.each do |friendship|
+      friendship.destroy
+    end
+     @friends = Friendship.where("user_id = ?", params[:id])
+    @friends.each do |friend|
+      friend.destroy
+    end
+    @user.destroy
+    
     redirect_to :action => 'index' 
   end
 
@@ -22,7 +70,6 @@ class ManagersController < ApplicationController
 
   def index_update
     @users=User.all
-    puts user_params
 
     if user_params[:name].nil? or user_params[:name] == ''
     else 
@@ -58,28 +105,36 @@ class ManagersController < ApplicationController
   end
 
   def chats_show
-    @infomations = User.find_by_sql(["select  user_name, chat_name, description, users.name as admin_name
-      from (select A.name as user_name, chats.name as chat_name, description, admin_id
-      from (SELECT *
-      FROM users
-      INNER JOIN chats_users
-      ON users.id = chats_users.user_id) as A
-      inner join chats
-      on A.chat_id = chats.id) as B
-      inner join users
-      on B.admin_id = users.id
-      "])
+    @informations = Chats_user.joins(:user, :chat)
+    
+    if !params[:user_name].blank?
+      @informations = @informations.where("users.name like ?", "%#{params[:user_name]}%")
+    end
+    if !params[:chat_name].blank?
+      @informations = @informations.where("chats.name like ?", "%#{params[:chat_name]}%")
+    end
+    if !params[:chat_admin].blank?
+      @informations = @informations.where("chats.admin_id like ?", "%#{params[:chat_admin]}%")
+    end
+    
   end
 
   def messages_show
-    @msg_infoms = Message.find_by_sql(["select A.name as user_name, chats.name as chat_name, A.body as msg, A.created_at as create_time
-        from (select *
-        from messages
-        inner join users
-        on messages.user_id = users.id) as A
-        inner join chats
-        on chats.id = A.chat_id
-      "])
+    @msg_infoms = Message.joins(:user, :chat)
+
+    if !params[:user_name].blank?
+      @msg_infoms = @msg_infoms.where("users.name like ?", "%#{params[:user_name]}%")
+    end
+    if !params[:chat_name].blank?
+      @msg_infoms = @msg_infoms.where("chats.name like ?", "%#{params[:chat_name]}%")
+    end
+    if !params[:key_word].blank?
+      @msg_infoms = @msg_infoms.where("messages.body like ?", "%#{params[:key_word]}%")
+    end
+    if !params[:send_at].blank?
+      @msg_infoms = @msg_infoms.where("messages.created_at like ?", "%#{params[:send_at]}%")
+    end
+
   end
 
   def correct_user
@@ -94,9 +149,6 @@ class ManagersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
 
      def user_params
       params.require(:user).permit(:name, :email, :role, :sex, :phonenumber, :status)

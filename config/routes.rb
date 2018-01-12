@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :managers do
+
     member do
       delete :destroy
       post :index_edit
@@ -17,8 +18,11 @@ Rails.application.routes.draw do
     end
     collection do
       get :index
+      post :index
       get :chats_show
+      post :chats_show
       get :messages_show
+      post :messages_show
     end
   end
 
