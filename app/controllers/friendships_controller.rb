@@ -44,6 +44,10 @@ class FriendshipsController < ApplicationController
 
   def destroy
     @friendship = current_user.friendships.find_by(friend_id: params[:id])
+    if @friendship==nil
+      user = User.find_by(id: params[:id])
+      @friendship = user.friendships.find_by(friend_id: current_user.id)
+    end
     @friendship.destroy
 
     user=User.find_by_id(params[:id])
