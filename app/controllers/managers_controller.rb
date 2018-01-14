@@ -2,6 +2,7 @@ class ManagersController < ApplicationController
   include SessionsHelper
 
   before_action :correct_user
+  before_action :set_user, only: [ :index_edit, :index_update, :destroy]
 
   def index
   	@users=User.all
@@ -150,6 +151,9 @@ class ManagersController < ApplicationController
 
   private
 
+    def set_user
+      @user = User.find(params[:id])
+    end
      def user_params
       params.require(:user).permit(:name, :email, :role, :sex, :phonenumber, :status)
     end
