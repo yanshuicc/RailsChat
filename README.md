@@ -21,12 +21,38 @@ Rails 5.1.4
 
 	rake assets:precompile RAILS_ENV=production
 
-本地运行
+faye本地运行
 
 	bundle exec rackup sync.ru -E production --host localhost
 
-	nohup bundle exec rackup sync.ru -E production --host 138.128.206.124
-	
+faye服务器远程部署命令
+
+	nohup bundle exec rackup sync.ru -E production --host 138.128.206.124 &
+
+修正服务器权限
+
+    chmod 755 .
+
+修正文件或路径用户组
+
+    chown mail:mail log2012.log
+
+    chown -R mail:mail log2012.log
+
+sqlite3相关语法
+
+
+在db目录下，打开slqite3
+
+    sqlite3 development.sqlite3
+
+查看表结构
+
+    .table
+
+更新管理员账号
+
+    update users set role=1 where id=1
 	
 博主blog
 
