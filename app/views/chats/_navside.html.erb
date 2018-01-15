@@ -31,7 +31,7 @@
                           <i class="fa fa-angle-right"></i> 发起聊天
                       <% end %>
                   <% end %>
-                  <%= link_to user_path(user), class: 'btn btn-info btn-block', role: "button", style: "border-radius: 0" do %>
+                  <%= link_to user_path(current_user) +"?friend_id="+ user.id.to_s + "&flag=2", class: 'btn btn-info btn-block', role: "button", style: "border-radius: 0" do %>
                       <i class="fa fa-angle-right"></i> 用户详情
                   <% end %>
                   <%= link_to friendship_path(user), method: :delete, class: 'btn btn-danger btn-block', role: "button", style: "border-radius: 0;margin:0px;" do %>
