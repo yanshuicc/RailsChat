@@ -30,7 +30,7 @@
         url:"/friendships/index_json",
         success: function(data) {
           $('#request_result tr').remove();
-          if(data.length==0){}
+          if(data.length==0 || typeof(data)!='object'){}
           else{
             name = data[0]['name'];
             id = data[0]['id'];
