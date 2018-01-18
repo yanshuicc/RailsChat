@@ -53,6 +53,16 @@ sqlite3相关语法
 更新管理员账号
 
     update users set role=1 where id=1
+
+## 测试
+
+先准备测试数据库
+
+    rails db:test:prepare
+
+运行测试前要打开faye
+
+
 	
 博主blog
 
