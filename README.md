@@ -1,12 +1,14 @@
-## [部署地址](http://chenpei.science)
+## [部署地址:http://chenpei.science](http://chenpei.science)
 
-环境版本
+### 环境版本
 
 ubuntu 16.04.2 LTS
 
 Ruby 2.4.2
 
 Rails 5.1.4
+
+### 项目部署
 
 
 安装apache2、passenger、sqlite3
