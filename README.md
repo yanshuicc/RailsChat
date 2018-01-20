@@ -1,73 +1,58 @@
+## [部署地址](http://chenpei.science)
+
 环境版本
+
+ubuntu 16.4
 
 Ruby 2.4.2
 
 Rails 5.1.4
 
 
-安装
-    bundle install
+安装apache2、passenger、sqlite3
 
+	sudo apt-get install sqlite3
+	sudo apt-get install apache2
+	sudo apt-get install -y libapache2-mod-passenger
+	sudo a2enmod passenger
+	sudo apache2ctl restart
 
-一些记录，可忽略
-
-	gem uninstall bcrypt
-	gem uninsall bcrypt-ruby
+配置项目
+	git clone https://github.com/yanshuicc/RailsChat.git
 	gem install bcrypt --platform=ruby
     gem install eventmachine --platform ruby
+    bundle install
 	
+添加网站配置文件/etc/apache2/sites-available/science.conf
+
+		<VirtualHost *:80>
+			ServerName chenpei.science
+
+			ServerAdmin yscc
+			DocumentRoot /var/www/RailsChat/public
+			RailsEnv development
+
+			ErrorLog ${APACHE_LOG_DIR}/error-science.log
+			CustomLog ${APACHE_LOG_DIR}/access-science.log combined
+
+			<Directory "/var/www/RailsChat/public">
+					Options FollowSymLinks
+					Require all granted
+			</Directory>
+	</VirtualHost>
+
+
+修正网站目录权限
+
+		 sudo chown -R yscc:yscc /var/www/RailsChat/
+
 
 生成public下的静态资源,需要修正字体的资源文件夹asset为fonts
 
 	rake assets:precompile RAILS_ENV=production
 
-faye本地运行
-
-	bundle exec rackup sync.ru -E production --host localhost
 
 faye服务器远程部署命令
 
-	nohup bundle exec rackup sync.ru -E production --host 138.128.206.124 &
+	nohup bundle exec rackup sync.ru -E production --host IP &
 
-修正服务器权限
-
-    chmod 755 .
-
-修正文件或路径用户组
-
-    chown mail:mail log2012.log
-
-    chown -R mail:mail log2012.log
-
-sqlite3相关语法
-
-
-在db目录下，打开slqite3
-
-    sqlite3 development.sqlite3
-
-查看表结构
-
-    .table
-
-更新管理员账号
-
-    update users set role=1 where id=1
-
-## 测试
-
-先准备测试数据库
-
-    rails db:test:prepare
-
-运行测试前要打开faye
-
-
-	
-博主blog
-
-http://blog.csdn.net/ppp8300885/article/details/59109778
-
-https://github.com/chrismccord/render_sync
-
-https://github.com/jamesotron/faye-rails
