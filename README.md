@@ -2,7 +2,7 @@
 
 环境版本
 
-ubuntu 16.4
+ubuntu 16.04.2 LTS
 
 Ruby 2.4.2
 
@@ -18,6 +18,7 @@ Rails 5.1.4
 	sudo apache2ctl restart
 
 配置项目
+
 	git clone https://github.com/yanshuicc/RailsChat.git
 	gem install bcrypt --platform=ruby
     gem install eventmachine --platform ruby
@@ -25,26 +26,26 @@ Rails 5.1.4
 	
 添加网站配置文件/etc/apache2/sites-available/science.conf
 
-		<VirtualHost *:80>
-			ServerName chenpei.science
+	<VirtualHost *:80>
+		ServerName chenpei.science
 
-			ServerAdmin yscc
-			DocumentRoot /var/www/RailsChat/public
-			RailsEnv development
+		ServerAdmin yscc
+		DocumentRoot /var/www/RailsChat/public
+		RailsEnv development
 
-			ErrorLog ${APACHE_LOG_DIR}/error-science.log
-			CustomLog ${APACHE_LOG_DIR}/access-science.log combined
+		ErrorLog ${APACHE_LOG_DIR}/error-science.log
+		CustomLog ${APACHE_LOG_DIR}/access-science.log combined
 
-			<Directory "/var/www/RailsChat/public">
-					Options FollowSymLinks
-					Require all granted
-			</Directory>
+		<Directory "/var/www/RailsChat/public">
+				Options FollowSymLinks
+				Require all granted
+		</Directory>
 	</VirtualHost>
 
 
 修正网站目录权限
 
-		 sudo chown -R yscc:yscc /var/www/RailsChat/
+	sudo chown -R yscc:yscc /var/www/RailsChat/
 
 
 生成public下的静态资源,需要修正字体的资源文件夹asset为fonts
